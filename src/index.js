@@ -3,6 +3,7 @@
 var Graph = require('lightning-graph');
 var d3 = require('d3');
 var utils = require('lightning-client-utils');
+var _ = require('lodash')
 var ForceEdgeBundling = require('../deps/force-edge-bundling');
 
 /*
@@ -41,23 +42,26 @@ var Visualization = Graph.extend({
             .edges(data.links)
             .step_size(scale/1000)
             
-        data.links = fbundling();    
+        data.links = fbundling();
 
         return data;
     },
 
-    getLine: function() {
-        return d3.svg.line()
-            .x(function(d){ return d ? this.x(d.x) : null; })
-            .y(function(d){ return d ? this.y(d.y) : null; })
-            .interpolate('linear');
+    getSource: function(l) {
+        return l[0].i
     },
 
-    getLinkPathFunction: function() {
-        var line = this.getLine();
-        return function(d) {
-            return line(d);
-        }        
+    getTarget: function(l) {
+        return l[l.length - 1].i
+    },
+
+    getLine: function(link) {
+        var self = this;
+
+        link = _.map(link, function(l) {
+            return [self.x(l.x), self.y(l.y)]
+        })
+        return link
     }
 
 });
