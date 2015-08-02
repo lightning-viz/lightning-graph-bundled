@@ -18,5 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/lightning-viz/lightning-graph-bundled.git"
   },
-  "lightning": {}
+  "lightning": {
+    "name": "graph-bundled"
+  }
 }
