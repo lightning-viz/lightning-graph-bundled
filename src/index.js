@@ -2,7 +2,7 @@
 var Graph = require('lightning-graph');
 var d3 = require('d3');
 var utils = require('lightning-client-utils');
-var _ = require('lodash')
+var _ = require('lodash');
 var ForceEdgeBundling = require('../deps/force-edge-bundling');
 
 /*
