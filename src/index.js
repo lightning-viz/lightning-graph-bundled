@@ -5,9 +5,7 @@ var utils = require('lightning-client-utils');
 var _ = require('lodash')
 var ForceEdgeBundling = require('../deps/force-edge-bundling');
 
-/*
- * Extend the base graph visualization
- */
+
 var Visualization = Graph.extend({
 
     formatData: function(data) {
@@ -28,6 +26,7 @@ var Visualization = Graph.extend({
             d.c = c ? c : styles.color
             d.k = c ? c.darker(0.75) : styles.stroke
             d.s = s ? s : styles.size
+            d.l = (data.labels || []).length > i ? data.labels[i] : null;
             return d
         })
 
